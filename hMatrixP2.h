@@ -8,25 +8,25 @@ class HMatrixP2{
 public:
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     class IndexPartitioning{
-        std::vector<unsigned int> data;
+        std::vector<int> data;
 
     public:
-        IndexPartitioning(std::vector<unsigned int> _data);
-        IndexPartitioning(unsigned int size);
+        IndexPartitioning(std::vector<int> _data);
+        IndexPartitioning(int size);
 
-        unsigned int total() const;
-        unsigned int levels() const;
-        std::vector<unsigned int> at_level(unsigned int level) const;
+        int total() const;
+        int levels() const;
+        std::vector<int> at_level(int level) const;
     };
     //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\//
 private:
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     class Kernel{
-        std::vector<unsigned int> left_indices;
-        std::vector<unsigned int> right_indices;
+        std::vector<int> left_indices;
+        std::vector<int> right_indices;
         std::vector<std::complex<double> > data;
     public:
-        Kernel(std::vector<unsigned int> _left_indices, std::vector<unsigned int> _right_indices, const std::complex<double>* matrix);
+        Kernel(std::vector<int> _left_indices, std::vector<int> _right_indices, const std::complex<double>* matrix);
 
         void apply(std::complex<double>* left, const std::complex<double>* right) const;
         long applyCount() const;
@@ -34,14 +34,14 @@ private:
     //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\//
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     class R1Element{
-        std::vector<unsigned int> left_indices;
-        std::vector<unsigned int> right_indices;
+        std::vector<int> left_indices;
+        std::vector<int> right_indices;
         std::vector<std::complex<double> > left_data;
         std::vector<std::complex<double> > right_data;
 
-        R1Element(std::vector<unsigned int> _left_indices, std::vector<unsigned int> _right_indices, std::complex<double>* _left_data, std::complex<double>* _right_data);
+        R1Element(std::vector<int> _left_indices, std::vector<int> _right_indices, std::complex<double>* _left_data, std::complex<double>* _right_data);
     public:
-        static std::vector<R1Element*> full_decomposition_at_level(const std::complex<double>* matrix, std::vector<unsigned int> left_indices, std::vector<unsigned int> right_indices);
+        static std::vector<R1Element*> full_decomposition_at_level(const std::complex<double>* matrix, std::vector<int> left_indices, std::vector<int> right_indices);
 
         void apply(std::complex<double>* left, const std::complex<double>* right) const;
         long applyCount() const;

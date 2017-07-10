@@ -1,7 +1,10 @@
-CXX=clang++
+CXX=g++
 LIBS=-L./lib -lstdc++ -llapacke -llapack -lcblas -lblas -lgfortran
-INCS=-I./lib/lapacke
-OPTS=-Wall -O3 -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_CPP
+INCS=-I./lib/lapacke -I./lib
+OPTS=-Wall -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_CPP 
+
+#OPTS+=-DEIGEN_DONT_VECTORIZE # For comparison
+OPTS+=-Ofast # Significant speedup compared to -O3
 
 default: main
 
