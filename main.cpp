@@ -83,7 +83,7 @@ int main(int argc, char* argv[]){
             frob_error += std::pow(std::abs(check[j+dim*i]-matrix[j+dim*i]),2);
         }
     }
-    std::cout<<std:endl<<"HMatrix truncation error rel/abs: "<<std::sqrt(frob_error/frob_mat)<<"/"<<std::sqrt(frob_error)<<std::endl;
+    std::cout<<std::endl<<"HMatrix truncation error rel/abs: "<<std::sqrt(frob_error/frob_mat)<<"/"<<std::sqrt(frob_error)<<std::endl;
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
     for(unsigned int i=0; i<dim; i++) left_vec[i]=0.;
